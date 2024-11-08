@@ -12,12 +12,12 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            const CustomOnboardingImage(),
-      
-              const Center(
+      body: Stack(
+        children: [
+          const CustomOnboardingImage(),
+            
+            const Center(
+              child: SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -46,54 +46,54 @@ class OnBoardingScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            Positioned(
-              top: size.height * 0.8,
-              left: size.width * 0.05,
-              child: Column(
-                children: [
-                  CustomButton(
-                    borderRadius: AppConstants.cardBorderRadius,
-                    color: AppColors.primaryLight,
-                                    text: 'Get Started',
-                                    textcolor: Colors.white,
-                                     onPressed: (){
-                                      Navigator.pushReplacementNamed(
-                                        context,
-                                       AppRoutes.getstarted,
-                                        );
-                                     },
-                                     padding: const EdgeInsets.symmetric(
-                                      vertical: 15,
-                                      horizontal: 130
-                                     ), 
-                                     
-                                     ),
-                                     const SizedBox(height: 15,),
-                                     CustomButton(
-                                      
-                                      borderRadius: AppConstants.cardBorderRadius,
-                                      textcolor: Colors.black,
-                                text: 'Login',
-                                 onPressed: (){
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                   AppRoutes.login,
-                                    );
-                                 },
-                                 padding: const EdgeInsets.symmetric(
-                                  vertical: 15,
-                                  horizontal: 155
-                                 ), 
-                                 
-                                 ),
-                ],
-              ),
             ),
-        
-            
-        
-          ],
-        ),
+          Positioned(
+            top: size.height * 0.8,
+            left: size.width * 0.05,
+            child: Column(
+              children: [
+                CustomButton(
+                  borderRadius: AppConstants.cardBorderRadius,
+                  color: AppColors.primaryLight,
+                                  text: 'Get Started',
+                                  textcolor: Colors.white,
+                                   onPressed: (){
+                                    Navigator.pushReplacementNamed(
+                                      context,
+                                     AppRoutes.getstarted,
+                                      );
+                                   },
+                                   padding: const EdgeInsets.symmetric(
+                                    vertical: 15,
+                                    horizontal: 130
+                                   ), 
+                                   
+                                   ),
+                                   const SizedBox(height: 15,),
+                                   CustomButton(
+                                    
+                                    borderRadius: AppConstants.cardBorderRadius,
+                                    textcolor: Colors.black,
+                              text: 'Login',
+                               onPressed: (){
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                 AppRoutes.login,
+                                  );
+                               },
+                               padding: const EdgeInsets.symmetric(
+                                vertical: 15,
+                                horizontal: 155
+                               ), 
+                               
+                               ),
+              ],
+            ),
+          ),
+      
+          
+      
+        ],
       ),
 
     );

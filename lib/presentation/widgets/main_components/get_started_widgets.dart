@@ -91,9 +91,14 @@ class GetStartedWidgets extends StatelessWidget {
           text: 'Already have an account? ', 
           buttontext: 'Sign In',
           onPressed: () {
+            Navigator.pushReplacementNamed(context,
+             AppRoutes.login
+             );
+            
         }, 
         ),
         ],
       );
   }
 }
+

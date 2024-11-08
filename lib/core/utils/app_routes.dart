@@ -1,4 +1,4 @@
-import 'package:car_app/presentation/auth/login_view.dart';
+import 'package:car_app/presentation/views/auth/login_view.dart';
 import 'package:car_app/presentation/views/utils/onboarding/get_started_screen.dart';
 import 'package:car_app/presentation/views/utils/onboarding/on_boarding_screen.dart';
 import 'package:flutter/material.dart';

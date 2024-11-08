@@ -5,7 +5,7 @@ import 'package:car_app/core/utils/contants.dart';
 import 'package:car_app/presentation/widgets/components/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/auth/form_bloc.dart';
+import '../../blocs/auth/form_bloc.dart';
 
 
 
