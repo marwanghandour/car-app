@@ -1,3 +1,6 @@
+// Assuming this is the structure of ProductEntity
+import '../../data/models/product_model.dart';
+
 class ProductEntity {
   final int id;
   final String title;
@@ -18,6 +21,20 @@ class ProductEntity {
     required this.updatedAt,
     required this.category,
   });
+
+  // Convert ProductEntity to ProductModel
+  ProductModel toModel() {
+    return ProductModel(
+      id: id,
+      title: title,
+      price: price,
+      description: description,
+      images: images,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      category: category.toModel(),
+    );
+  }
 }
 
 class CategoryEntity {
@@ -34,4 +51,15 @@ class CategoryEntity {
     required this.createdAt,
     required this.updatedAt,
   });
+
+  // Convert CategoryEntity to CategoryModel
+  CategoryModel toModel() {
+    return CategoryModel(
+      id: id,
+      name: name,
+      image: image,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 }
