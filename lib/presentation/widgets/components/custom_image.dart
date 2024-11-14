@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:car_app/presentation/widgets/elements/custom_circle_indicator.dart';
 import 'package:flutter/material.dart';
 import '../../../core/utils/app_icons.dart';
 
@@ -14,8 +13,8 @@ class CustomImage extends StatelessWidget {
     return CachedNetworkImage(
       fit: BoxFit.cover,
       height: height,
+      width: double.infinity,
       imageUrl: imageUrl,
-      placeholder: (context, url) => const CustomCircleIndicator(),
       errorWidget: (context, url, error) => const Icon(color: Colors.red,
         AppIcons.error,
       ),

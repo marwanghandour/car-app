@@ -1,9 +1,9 @@
-import 'package:car_app/data/models/product_model.dart';
+import 'package:car_app/domain/entities/car_entity.dart';
 import 'package:flutter/material.dart';
 import '../components/custom_card_widget.dart';
 
 class ProductGridView extends StatelessWidget {
-  final List<ProductModel> products;
+  final List<CarEntity> products;
 
   const ProductGridView({super.key, required this.products});
 
@@ -19,7 +19,7 @@ class ProductGridView extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           final product = products[index];
-          return CustomCardWidget(product: product);
+          return CustomCardWidget(product: product,);
         },
         childCount: products.length,
       ),

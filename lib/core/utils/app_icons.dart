@@ -16,6 +16,7 @@ class AppIcons {
   static const IconData email = FontAwesomeIcons.envelope;
   static const IconData google = FontAwesomeIcons.google;
   static const IconData apple = FontAwesomeIcons.apple;
+  static const IconData favorite = FontAwesomeIcons.heart;
 
 
 

@@ -1,11 +1,11 @@
-import '../../../domain/entities/product.dart';
+import 'package:car_app/domain/entities/car_entity.dart';
 
 abstract class ProductState {}
 
 class ProductLoading extends ProductState {}
 
 class ProductLoaded extends ProductState {
-  final List<ProductEntity> products;
+  final List<CarEntity> products;
 
   ProductLoaded(this.products);
 }

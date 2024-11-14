@@ -1,8 +1,15 @@
+import 'package:car_app/dependency_injection.dart';
+import 'package:car_app/presentation/blocs/product_bloc/product_bloc.dart';
+import 'package:car_app/presentation/blocs/product_bloc/product_state.dart';
 import 'package:car_app/presentation/widgets/components/category_row.dart';
 import 'package:car_app/presentation/widgets/components/category_title.dart';
 import 'package:car_app/presentation/widgets/components/custom_horizontal_list.dart';
+import 'package:car_app/presentation/widgets/elements/custom_circle_indicator.dart';
+import 'package:car_app/presentation/widgets/elements/error_widget.dart';
 import 'package:flutter/material.dart';
-import '../../../domain/entities/products.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../blocs/product_bloc/product_event.dart';
+import '../../views/errors/error_view.dart';
 import '../components/discount_card.dart';
 
 class HomeViewWidgets extends StatelessWidget {
@@ -10,8 +17,6 @@ class HomeViewWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> featuredProducts = _getFeaturedProducts();
-
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
@@ -19,7 +24,7 @@ class HomeViewWidgets extends StatelessWidget {
         _categoryTitle(),
         _buildCategoryList(),
         _buildFeaturedProductsTitle(),
-        _buildFeaturedProducts(featuredProducts),
+        _buildToyotaProducts(),
       ],
     );
   }
@@ -48,21 +53,34 @@ class HomeViewWidgets extends StatelessWidget {
     );
   }
 
-  SliverToBoxAdapter _buildFeaturedProducts(List<Product> featuredProducts) {
+  SliverToBoxAdapter _buildToyotaProducts() {
     return SliverToBoxAdapter(
-      child: SizedBox(
-        height: 200, 
-        child: CustomHorizontalList(products: featuredProducts),
+      child: BlocProvider(
+        create: (context) => ProductBloc(sl())..add(FetchProducts()),
+        child: BlocBuilder<ProductBloc, ProductState>(
+          builder: (context, state) {
+            if (state is ProductLoading) {
+              return const CustomCircleIndicator();
+            } else if (state is ProductError) {
+              return CustomErrorWidget(errMessege: state.message,);
+            } else if (state is ProductLoaded) {
+              if (state.products.isEmpty) {
+                return const CustomErrorWidget(errMessege: 'No products available',);
+              }
+              return SizedBox(
+                height: 250,
+                child: CustomHorizontalList(
+                  products: state.products, 
+                ),
+              );
+            } else {
+              return const ErrorView();
+            }
+          },
+        ),
       ),
     );
   }
 
-  List<Product> _getFeaturedProducts() {
-    return [
-      Product(id: 1, name: "Product 1", price: 29.99),
-      Product(id: 2, name: "Product 2", price: 49.99),
-      Product(id: 3, name: "Product 3", price: 99.99),
-      Product(id: 4, name: "Product 4", price: 199.99),
-    ];
-  }
+
 }

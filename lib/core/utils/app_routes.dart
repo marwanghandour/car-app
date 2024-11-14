@@ -14,34 +14,27 @@ class AppRoutes {
   static const String getstarted = '/getstarted';
   static const String login = '/login';
 
-  
-
-
-
-
-
-
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case main:
         return NavigationHelper.createSlideRoute(const MainScreen());
-     
+
       case splash:
-        return NavigationHelper.createSlideRoute( const Splashscreen());
-  
-      
-       case onboarding:
-       return NavigationHelper.createSlideRoute(const OnBoardingScreen());
+        return NavigationHelper.createSlideRoute(const Splashscreen());
 
-       case getstarted:
-       return NavigationHelper.createSlideRoute(const GetStartedScreen());
+      case onboarding:
+        return NavigationHelper.createSlideRoute(const OnBoardingScreen());
 
-case login:
-       return NavigationHelper.createSlideRoute(const SignInPage());
+      case getstarted:
+        return NavigationHelper.createSlideRoute(const GetStartedScreen());
 
-      
+      case login:
+        return NavigationHelper.createSlideRoute(const SignInPage());
+
+    
       default:
         return NavigationHelper.createSlideRoute(const ErrorView());
     }
   }
 }
+

@@ -1,10 +1,9 @@
+import 'package:car_app/core/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/utils/app_routes.dart';
-import 'dependency_injection.dart';
-import 'presentation/blocs/product_bloc/product_bloc.dart';
-import 'presentation/blocs/product_bloc/product_event.dart';
 import 'presentation/blocs/theme/theme_bloc.dart';
+import 'presentation/blocs/theme/theme_state.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,24 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<ThemeBloc>(
-          create: (context) => ThemeBloc(),
-        ),
-        BlocProvider<ProductBloc>(
-          create: (context) => sl<ProductBloc>()..add(FetchProducts()),
-          lazy: true,
-        ),
-        
-
-      ],
-      child: BlocBuilder<ThemeBloc, ThemeData>(
-        builder: (context, theme) {
+    return BlocProvider<ThemeBloc>(
+      create: (context) => ThemeBloc(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
           return MaterialApp(
-            themeMode: ThemeMode.system,
+            themeMode: state.themeMode, 
             debugShowCheckedModeBanner: false,
-            theme: theme,
+            theme: state.themeData,      // Light theme data
+            darkTheme: AppTheme.darkTheme,  // Dark theme data
             initialRoute: AppRoutes.splash,
             onGenerateRoute: (settings) => AppRoutes.generateRoute(settings),
           );

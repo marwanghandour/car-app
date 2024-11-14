@@ -3,7 +3,6 @@ import '../../../domain/usecases/get_product.dart';
 import 'product_event.dart';
 import 'product_state.dart';
 
-
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final GetProducts getProducts;
 
@@ -15,9 +14,10 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     emit(ProductLoading());
     try {
       final products = await getProducts();
-      emit(ProductLoaded(products));
+      emit(ProductLoaded(products));  // Load all products
     } catch (e) {
       emit(ProductError(e.toString()));
     }
   }
+
 }

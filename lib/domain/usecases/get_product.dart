@@ -1,4 +1,4 @@
-import '../entities/product.dart';
+import '../entities/car_entity.dart';
 import '../repositories/product_repo.dart';
 
 class GetProducts {
@@ -6,13 +6,9 @@ class GetProducts {
 
   GetProducts(this.repository);
 
-  Future<List<ProductEntity>> call() async {
+  // Fetch products by make
+  Future<List<CarEntity>> call() async {
     return await repository.getAllProducts();
+    
   }
-
-
-  Future<ProductEntity> call2() async {
-    return await repository.getProductById('2');
-  }
-  
 }

@@ -1,6 +1,9 @@
-import '../entities/product.dart';
+import 'package:car_app/domain/entities/car_entity.dart';
+import 'package:dio/dio.dart';
 
 abstract class ProductRepository {
-  Future<List<ProductEntity>> getAllProducts();
-  Future<ProductEntity> getProductById(String id);
+  ProductRepository(Dio dio);
+
+  Future<List<CarEntity>> getAllProducts();
+  Future<List<CarEntity>> getTeslaProducts();
 }

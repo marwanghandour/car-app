@@ -10,7 +10,8 @@ class CategoryTitle extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(
           left: 15,
-          top: 12
+          top: 12,
+          bottom: 10
         ),
         child: Text(
           title,
