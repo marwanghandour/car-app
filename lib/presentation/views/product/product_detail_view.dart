@@ -1,6 +1,7 @@
 import 'package:car_app/core/utils/app_icons.dart';
 import 'package:car_app/domain/entities/car_entity.dart';
 import 'package:car_app/presentation/widgets/components/icon_container.dart';
+import 'package:car_app/presentation/widgets/components/product_detail_buttons.dart';
 import 'package:car_app/presentation/widgets/main_components/product_detail_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,8 @@ class ProductDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      bottomNavigationBar: const ProductDetailButtons(),
+       
       appBar: AppBar(
         actions: [
           Padding(

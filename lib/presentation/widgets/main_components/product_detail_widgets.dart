@@ -84,9 +84,9 @@ class ProductDetailWidgets extends StatelessWidget {
           RowTexts(product: product),
           AppConstants.verticalSpacingMedium,
 
-          const SizedBox(
+         SizedBox(
             height: 500,
-            child: CustomTabBar()),
+            child: CustomTabBar(product: product,)),
         ],
       );
   }

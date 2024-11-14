@@ -12,10 +12,12 @@ class CustomCircleIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(color ?? Theme.of(context).primaryColor),
-        semanticsLabel: 'Loading',
+    return Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(color ?? Theme.of(context).primaryColor),
+          semanticsLabel: 'Loading',
+        ),
       ),
     );
   }
