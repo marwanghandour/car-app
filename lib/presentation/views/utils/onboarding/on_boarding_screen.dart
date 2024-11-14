@@ -18,6 +18,7 @@ class OnBoardingScreen extends StatelessWidget {
             
             const Center(
               child: SafeArea(
+                
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
