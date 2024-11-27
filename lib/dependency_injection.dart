@@ -1,11 +1,11 @@
-import 'package:car_app/presentation/blocs/product_bloc/tesla/bloc/tesla_bloc.dart';
+import 'package:car_app/Features/home/presentation/blocs/product_bloc/tesla/bloc/tesla_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'core/utils/network_info.dart';
-import 'data/repostories/product_repo_impl.dart';
-import 'domain/repositories/product_repo.dart';
-import 'domain/usecases/get_product.dart';
-import 'presentation/blocs/product_bloc/product_bloc.dart';
+import 'Features/home/data/repostories/product_repo_impl.dart';
+import 'Features/home/domain/repositories/product_repo.dart';
+import 'Features/home/domain/usecases/get_product.dart';
+import 'Features/home/presentation/blocs/product_bloc/product_bloc.dart';
 
 final sl = GetIt.instance;
 
