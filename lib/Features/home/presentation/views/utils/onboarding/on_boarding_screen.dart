@@ -72,7 +72,7 @@ class OnBoardingScreen extends StatelessWidget {
                                    ),
                                    const SizedBox(height: 15,),
                                    CustomButton(
-                                    
+                                    color: Colors.white,
                                     borderRadius: AppConstants.cardBorderRadius,
                                     textcolor: Colors.black,
                               text: 'Login',

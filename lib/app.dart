@@ -4,7 +4,6 @@ import 'package:car_app/core/utils/app_routes.dart';
 import 'package:car_app/core/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'Features/auth/data/sources/supabase_auth_sources.dart';
 import 'Features/home/presentation/blocs/theme/theme_state.dart';
 
