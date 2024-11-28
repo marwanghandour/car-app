@@ -16,6 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_secure_storage: ^9.2.2
   font_awesome_flutter: ^10.8.0
   get_it: ^8.0.2
   persistent_bottom_nav_bar: ^6.2.1

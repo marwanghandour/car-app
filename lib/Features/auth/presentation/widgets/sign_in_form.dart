@@ -2,7 +2,6 @@ import 'package:car_app/Features/home/presentation/widgets/elements/custom_circl
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/app_routes.dart';
-import '../../../home/presentation/views/errors/error_view.dart';
 import '../blocs/auth/auth_bloc.dart';
 import '../blocs/auth/auth_event.dart';
 import '../blocs/auth/auth_state.dart';
@@ -90,7 +89,7 @@ class _SignInFormState extends State<SignInForm> {
                 if (state is AuthLoadingState) {
                   return const CustomCircleIndicator();
                 }
-                return const ErrorView();
+                return const SizedBox();
               },
             ),
           ),

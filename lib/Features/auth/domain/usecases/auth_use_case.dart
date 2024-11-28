@@ -1,7 +1,12 @@
 import '../../data/repo/auth_repo.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 class AuthUseCases {
   final AuthRepository repository;
+  final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+
+  
 
   AuthUseCases(this.repository);
 
@@ -16,4 +21,9 @@ class AuthUseCases {
   Future<String?> logOut() {
     return repository.logOut();
   }
+
+  
+
+
 }
+
