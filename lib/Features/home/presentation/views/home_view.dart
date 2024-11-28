@@ -1,3 +1,5 @@
+import 'package:car_app/Features/auth/presentation/blocs/auth/auth_bloc.dart';
+import 'package:car_app/Features/auth/presentation/blocs/auth/auth_event.dart';
 import 'package:car_app/core/utils/app_icons.dart';
 import 'package:car_app/Features/home/presentation/blocs/theme/theme_bloc.dart';
 import 'package:car_app/Features/home/presentation/blocs/theme/theme_event.dart';
@@ -24,6 +26,13 @@ class HomeView extends StatelessWidget {
             icon: const Icon(AppIcons.switchtheme),
           onPressed: () {
             BlocProvider.of<ThemeBloc>(context).add(ToggleThemeEvent());
+            
+          },
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout_outlined),
+          onPressed: () {
+            BlocProvider.of<AuthBloc>(context).add(SignOutEvent());
             
           },
           ),

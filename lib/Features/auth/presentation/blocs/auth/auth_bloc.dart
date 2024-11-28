@@ -1,44 +1,67 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../../data/sources/supabase_auth_sources.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, MyAuthState> {
   final SupabaseAuthSource authSource;
+  final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
 
   AuthBloc(this.authSource) : super(AuthInitialState()) {
     on<SignInEvent>(_onSignIn);
     on<SignUpEvent>(_onSignUp);
     on<SignOutEvent>(_onSignOut);
+    on<CheckSessionEvent>(_onCheckSession); 
   }
 
+  Future<void> _onCheckSession(CheckSessionEvent event, Emitter<MyAuthState> emit) async {
+    emit(AuthLoadingState());
+    try {
+      final email = await authSource.checkSession();
+      if (email != null) {
+        emit(AuthSuccessState(email: email));  
+      } else {
+        emit(AuthInitialState());  
+      }
+    } catch (e) {
+      final errorMessage = _getCustomErrorMessage(e.toString());
+      emit(AuthFailureState(message: errorMessage));
+    }
+  }
+
+  // Handle SignIn event (save token to secure storage after sign in)
   Future<void> _onSignIn(SignInEvent event, Emitter<MyAuthState> emit) async {
     emit(AuthLoadingState());
     try {
       final email = await authSource.signIn(event.email, event.password);
-      emit(AuthSuccessState(email: email));
+
+      emit(AuthSuccessState(email: email));  // Emit success state with email
     } catch (e) {
       final errorMessage = _getCustomErrorMessage(e.toString());
       emit(AuthFailureState(message: errorMessage));
     }
   }
 
+  // Handle SignUp event (save token to secure storage after sign up)
   Future<void> _onSignUp(SignUpEvent event, Emitter<MyAuthState> emit) async {
     emit(AuthLoadingState());
     try {
       final email = await authSource.signUp(event.email, event.password);
-      emit(AuthSuccessState(email: email));
+
+      emit(AuthSuccessState(email: email));  // Emit success state with email
     } catch (e) {
       final errorMessage = _getCustomErrorMessage(e.toString());
       emit(AuthFailureState(message: errorMessage));
     }
   }
 
+  // Handle SignOut event (remove token from secure storage on sign out)
   Future<void> _onSignOut(SignOutEvent event, Emitter<MyAuthState> emit) async {
     emit(AuthLoadingState());
     try {
       await authSource.signOut();
-      emit(AuthInitialState());
+      emit(AuthInitialState());  // Reset to initial state after sign out
     } catch (e) {
       final errorMessage = _getCustomErrorMessage(e.toString());
       emit(AuthFailureState(message: errorMessage));

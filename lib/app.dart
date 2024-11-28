@@ -5,6 +5,7 @@ import 'package:car_app/core/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Features/auth/data/sources/supabase_auth_sources.dart';
+import 'Features/auth/presentation/blocs/auth/auth_event.dart';
 import 'Features/home/presentation/blocs/theme/theme_state.dart';
 
 class MyApp extends StatelessWidget {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ThemeBloc(),
         ),
         BlocProvider(
-          create: (context) => AuthBloc(authSource),
+          create: (context) => AuthBloc(authSource)..add(CheckSessionEvent()),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
             darkTheme: AppTheme.darkTheme,
             initialRoute: AppRoutes.splash,
             onGenerateRoute: (settings) => AppRoutes.generateRoute(settings),
-          );
+             
+      );
         },
       ),
     );

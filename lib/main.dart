@@ -2,7 +2,6 @@ import 'package:car_app/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'Features/auth/data/sources/supabase_auth_sources.dart';
-import 'Features/auth/data/repo/secure_storage_service.dart';
 import 'app.dart';
 
 void main() async {
@@ -14,12 +13,7 @@ void main() async {
   );
   final supabaseClient = Supabase.instance.client;
   final authSource = SupabaseAuthSource(supabaseClient);
-  final SecureStorageService secureStorageService = SecureStorageService();
-  final sessionString = await secureStorageService.readSecureData('supabase_session');
-  
-  if (sessionString != null) {
-    supabaseClient.auth.setSession(sessionString);
-  }
+
   
   
   runApp(MyApp(authSource));
