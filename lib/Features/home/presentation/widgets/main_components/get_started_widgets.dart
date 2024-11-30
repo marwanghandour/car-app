@@ -43,9 +43,7 @@ class GetStartedWidgets extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 70.0),
            
              onPressed: () { 
-              Navigator.pushReplacementNamed(context,
-               AppRoutes.main,
-               );
+              
            
               },
              ),
@@ -63,9 +61,7 @@ class GetStartedWidgets extends StatelessWidget {
           icon: const Icon(AppIcons.google, color: Colors.black,),
 
          onPressed: () { 
-          Navigator.pushReplacementNamed(context,
-               AppRoutes.main,
-               );
+         
 
           },
          ),
@@ -80,9 +76,7 @@ class GetStartedWidgets extends StatelessWidget {
         borderRadius: AppConstants.cardBorderRadius,
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 67.0),
          onPressed: () { 
-          Navigator.pushReplacementNamed(context,
-               AppRoutes.main,
-               );
+         
 
           },
          ),
