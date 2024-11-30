@@ -20,9 +20,9 @@ class AuthBloc extends Bloc<AuthEvent, MyAuthState> {
     try {
       final email = await authSource.checkSession();
       if (email != null) {
-        emit(AuthSuccessState(email: email));  
+        emit(AuthSuccessState(email: email));
       } else {
-        emit(AuthInitialState());  
+        emit(AuthInitialState());
       }
     } catch (e) {
       final errorMessage = _getCustomErrorMessage(e.toString());
@@ -30,38 +30,33 @@ class AuthBloc extends Bloc<AuthEvent, MyAuthState> {
     }
   }
 
-  // Handle SignIn event (save token to secure storage after sign in)
   Future<void> _onSignIn(SignInEvent event, Emitter<MyAuthState> emit) async {
     emit(AuthLoadingState());
     try {
       final email = await authSource.signIn(event.email, event.password);
-
-      emit(AuthSuccessState(email: email));  // Emit success state with email
+      emit(AuthSuccessState(email: email));
     } catch (e) {
       final errorMessage = _getCustomErrorMessage(e.toString());
       emit(AuthFailureState(message: errorMessage));
     }
   }
 
-  // Handle SignUp event (save token to secure storage after sign up)
   Future<void> _onSignUp(SignUpEvent event, Emitter<MyAuthState> emit) async {
     emit(AuthLoadingState());
     try {
       final email = await authSource.signUp(event.email, event.password);
-
-      emit(AuthSuccessState(email: email));  // Emit success state with email
+      emit(AuthSuccessState(email: email));
     } catch (e) {
       final errorMessage = _getCustomErrorMessage(e.toString());
       emit(AuthFailureState(message: errorMessage));
     }
   }
 
-  // Handle SignOut event (remove token from secure storage on sign out)
   Future<void> _onSignOut(SignOutEvent event, Emitter<MyAuthState> emit) async {
     emit(AuthLoadingState());
     try {
       await authSource.signOut();
-      emit(AuthInitialState());  // Reset to initial state after sign out
+      emit(AuthInitialState());
     } catch (e) {
       final errorMessage = _getCustomErrorMessage(e.toString());
       emit(AuthFailureState(message: errorMessage));
@@ -69,34 +64,34 @@ class AuthBloc extends Bloc<AuthEvent, MyAuthState> {
   }
 
   String _getCustomErrorMessage(String error) {
-  if (error.contains('email') && error.contains('invalid')) {
-    return 'The email address provided is invalid. Please check and enter a valid email address.';
-  } else if (error.contains('email') && error.contains('not found')) {
-    return 'No account found with this email. Please check and try again.';
-  } else if (error.contains('password') && error.contains('incorrect')) {
-    return 'The password you entered is incorrect. Please try again.';
-  } else if (error.contains('password') && error.contains('weak')) {
-    return 'The password is too weak. Please choose a stronger password.';
-  } else if (error.contains('network')) {
-    return 'Network issue detected. Please check your internet connection or try again later.';
-  } else if (error.contains('timeout')) {
-    return 'The request timed out. Please check your connection and try again.';
-  } else if (error.contains('user') && error.contains('disabled')) {
-    return 'Your account has been disabled. Please contact support for assistance.';
-  } else if (error.contains('account') && error.contains('locked')) {
-    return 'Your account has been locked due to multiple failed attempts. Please try again later.';
-  } else if (error.contains('email') && error.contains('already exists')) {
-    return 'An account with this email already exists. Please try logging in or use a different email.';
-  } else if (error.contains('server')) {
-    return 'Server issue. Please try again later.';
-  } else if (error.contains('unauthorized')) {
-    return 'Unauthorized access. Please check your credentials and try again.';
-  } else if (error.contains('quota')) {
-    return 'Quota exceeded. Please try again after some time.';
-  } else if (error.contains('unexpected')) {
-    return 'An unexpected error occurred. Please try again later.';
-  } else {
-    return 'An unknown error occurred. Please try again or contact support if the issue persists.';
+    if (error.contains('email') && error.contains('invalid')) {
+      return 'The email address is invalid. Please enter a valid email.';
+    } else if (error.contains('email') && error.contains('not found')) {
+      return 'No account found with this email address.';
+    } else if (error.contains('password') && error.contains('incorrect')) {
+      return 'Incorrect password. Please try again.';
+    } else if (error.contains('password') && error.contains('weak')) {
+      return 'Your password is too weak. Please use a stronger password.';
+    } else if (error.contains('network')) {
+      return 'Network issue detected. Check your connection and try again.';
+    } else if (error.contains('timeout')) {
+      return 'Request timed out. Please try again later.';
+    } else if (error.contains('user') && error.contains('disabled')) {
+      return 'Your account is disabled. Contact support for assistance.';
+    } else if (error.contains('account') && error.contains('locked')) {
+      return 'Your account is locked due to multiple failed attempts. Try again later.';
+    } else if (error.contains('email') && error.contains('already exists')) {
+      return 'An account with this email already exists. Try logging in or use another email.';
+    } else if (error.contains('server')) {
+      return 'Server issue encountered. Please try again later.';
+    } else if (error.contains('unauthorized')) {
+      return 'Unauthorized access. Verify your credentials.';
+    } else if (error.contains('quota')) {
+      return 'Quota exceeded. Please try again after some time.';
+    } else if (error.contains('unexpected')) {
+      return 'Unexpected error. Try again later or contact support.';
+    } else {
+      return 'An unknown error occurred. Please contact support.';
+    }
   }
-}
 }
